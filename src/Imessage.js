@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ShowContext } from './App';
 import Chat from './Chat';
 import './Imessage.css';
 import Sidebar from './Sidebar';
 
 const Imessage = () => {
+    const [show, setShow] = useContext(ShowContext)
     return (
         <div className="imessage">
-           <Sidebar/>
-           <Chat/>
+            {show ? <Sidebar/> : <Chat/> }
+           
+           
         </div>
     );
 };

@@ -10,6 +10,10 @@ import db from './Firebase';
 import firebase from 'firebase';
 import { selectUser } from './UserSlice';
 import FlipMove from 'react-flip-move';
+import SendIcon from '@material-ui/icons/Send';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { useContext } from 'react';
+import { ShowContext } from './App';
 
 const Chat = () => {
 
@@ -18,6 +22,7 @@ const Chat = () => {
     const chatName = useSelector(selectChatName);
     const chatId = useSelector(selectChatID);
     const [messages, setMessages] = useState([]);
+    const [show, setShow] = useContext(ShowContext);
 
     useEffect(()=> {
         if(chatId){
@@ -39,15 +44,17 @@ const Chat = () => {
 
     const sendMessage = e =>{
 
-        db.collection("chats").doc(chatId).collection("messages").add({
-            timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
-            message: input,
-            photo: user.photo,
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-
-        })
+        if(input){
+            db.collection("chats").doc(chatId).collection("messages").add({
+                timeStamp: firebase.firestore.FieldValue.serverTimestamp(),
+                message: input,
+                photo: user.photo,
+                uid: user.uid,
+                email: user.email,
+                displayName: user.displayName,
+    
+            })
+        }
         e.preventDefault();
 
         setInput('')
@@ -57,6 +64,9 @@ const Chat = () => {
     return (
         <div className="chat">
             <div className="chat_header">
+                <IconButton>
+                <ArrowBackIosIcon onClick={()=>setShow(true)} />
+                </IconButton>
                <h4>To: <span className="chat_name">{chatName}</span></h4>
                <strong>Details</strong>
             </div>
@@ -69,8 +79,12 @@ const Chat = () => {
             </div>
             <div className="chat_input">
                   <form>
+                  
                       <input value={input} onChange={e=> setInput(e.target.value)} placeholder="iMessage" type="text"/>
-                      <button onClick={sendMessage}>Send message</button>
+                    
+                      <IconButton>
+                         <SendIcon onClick={sendMessage} />
+                      </IconButton>
                   </form>
                   <IconButton>
                       <MicIcon/>

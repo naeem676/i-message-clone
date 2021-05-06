@@ -7,11 +7,15 @@ import { setChat } from './ChatSlice';
 import db from './Firebase';
 import './SidebarChat.css';
 import * as timeago from 'timeago.js';
+import { useContext } from 'react';
+import { ShowContext } from './App';
 
 const SidebarChat = ({id, chatName}) => {
 
     const dispatch = useDispatch();
     const [chatInfo, setChatInfo] = useState([]);
+
+    const [show, setShow] = useContext(ShowContext)
 
     useEffect(()=>{
         db.collection("chats")
@@ -22,14 +26,20 @@ const SidebarChat = ({id, chatName}) => {
             setChatInfo(snapshot.docs.map((doc)=> doc.data()))
         })
     },[id])
-    
-    return (
-        <div onClick={()=>dispatch(
+
+    const showAndDispatch = ()=>{
+        dispatch(
             setChat({
                 chatId: id,
                 chatName: chatName
             })
-        )} className="sidebarChat">
+            
+        )
+        setShow(false)
+    }
+    
+    return (
+        <div onClick={showAndDispatch} className="sidebarChat">
             <Avatar src={chatInfo[0]?.photo} />
             <div className="sidebarChat_info">
                 <h3>{chatName}</h3>

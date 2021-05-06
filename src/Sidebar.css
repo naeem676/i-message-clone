@@ -1,11 +1,19 @@
 .sidebar{
-    flex: 0.35;
+    flex: 1;
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #f5f5f5;
     border-right: 1px solid lightgray;
 }
+/* .sidebar{
+    flex: 0.35;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5;
+    border-right: 1px solid lightgray;
+} */
 .sidebar_header{
     display:flex;
     align-items:center;

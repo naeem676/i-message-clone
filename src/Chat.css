@@ -1,6 +1,13 @@
-.chat{
+/* .chat{
     display: flex;
     flex: 0.65;
+    flex-direction: column;
+    height: 100vh;
+    background-color: white
+} */
+.chat{
+    display: flex;
+    flex: 1;
     flex-direction: column;
     height: 100vh;
     background-color: white
@@ -32,15 +39,13 @@
 }
 
 .chat_input> form> input{
-    width: 98%;
+    width: 90%;
     outline-width: 0;
     border: 1px solid lightgray;
     border-radius:999px;
     padding: 5px;
 }
-.chat_input> form> button{
-    display: none;
-}
+
 .chat_message{
     flex: 1;
     overflow: scroll;
@@ -53,4 +58,14 @@
 .chat_message{
      -ms-overflow-style: none; /*IE and Edge */
      scrollbar-width: none;  /*firefox */
+}
+
+@media screen and (max-width: 480px){
+    .chat_input> form> input{
+        width: 75%;
+        outline-width: 0;
+        border: 1px solid lightgray;
+        border-radius:999px;
+        padding: 5px;
+    }
 }
