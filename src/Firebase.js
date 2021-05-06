@@ -1,12 +1,13 @@
 import firebase from 'firebase';
+import env from "react-dotenv";
 const firebaseConfig = {
-    apiKey: "AIzaSyA1VLCFKxLiD0fGaFIMkO9Gsxkyr9gUc3U",
-    authDomain: "i-message-my.firebaseapp.com",
-    projectId: "i-message-my",
-    storageBucket: "i-message-my.appspot.com",
-    messagingSenderId: "513236541808",
-    appId: "1:513236541808:web:1a7271ba315cfc6f4eefb5",
-    measurementId: "G-6T6CRMBSWB"
+    apiKey: `${env.API_KEY}`,
+    authDomain: `${env.AUTH_DOMAIN}`,
+    projectId: `${env.PROJECT_ID}`,
+    storageBucket: `${env.STORAGE_BUCKET}`,
+    messagingSenderId: `${env.MESSAGING_SENDER_ID}`,
+    appId: `${env.APP_ID}`,
+    measurementId: `${env.MEASUREMENT_ID}`
   };
 
   const firebaseApp = firebase.initializeApp(firebaseConfig);

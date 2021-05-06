@@ -43,6 +43,7 @@ const Chat = () => {
     }, [chatId])
 
     const sendMessage = e =>{
+        e.preventDefault();
 
         if(input){
             db.collection("chats").doc(chatId).collection("messages").add({
@@ -55,7 +56,7 @@ const Chat = () => {
     
             })
         }
-        e.preventDefault();
+        
 
         setInput('')
 
@@ -86,9 +87,9 @@ const Chat = () => {
                          <SendIcon onClick={sendMessage} />
                       </IconButton>
                   </form>
-                  <IconButton>
+                  {/* <IconButton>
                       <MicIcon/>
-                  </IconButton>
+                  </IconButton> */}
             </div>
         </div>
     );
